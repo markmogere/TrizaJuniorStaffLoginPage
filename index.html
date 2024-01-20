@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triza Junior School | Staff Portal Login</title>
+  <!-- Link your CSS file here -->
+ 
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrapper">
+    <form id="loginForm">
+      <h1>Staff Portal</h1>
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Password" required>
+        <i class='bx bxs-lock-alt' ></i>
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox">Remember Me</label>
+        <a href="#">Forgot Password</a>
+      </div>
+      <button type="submit" class="btn" id="loginBtn" disabled>Login</button>
+      <p class="error-message" style="color: red; display: none;">Invalid username or password. Please try again.</p>
+      <div class="register-link">
+        <p>Need Help? <a href="mailto:markorori1997@gmail.com">Contact ICT Director</a></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const users = {
+      "tjsstaff": "trizajschool@2024",
+      
+      // Add more usernames and passwords here
+      // "user3@example.com": "password3",
+      // "user4@example.com": "password4",
+      // ...
+    };
+
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.querySelector('.error-message');
+    const loginBtn = document.getElementById('loginBtn');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    // Function to validate email format
+    function validateEmail(email) {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email);
+    }
+
+    // Function to check if both fields are not empty
+    function checkFieldsNotEmpty() {
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+      return username !== '' && password !== '';
+    }
+
+    // Event listener for input fields
+    usernameInput.addEventListener('input', function () {
+      if (checkFieldsNotEmpty()) {
+        loginBtn.removeAttribute('disabled');
+      } else {
+        loginBtn.setAttribute('disabled', 'true');
+      }
+    });
+
+    passwordInput.addEventListener('input', function () {
+      if (checkFieldsNotEmpty()) {
+        loginBtn.removeAttribute('disabled');
+      } else {
+        loginBtn.setAttribute('disabled', 'true');
+      }
+    });
+
+    // Event listener for form submission
+    loginForm.addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the form from submitting
+
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      // Check if the username exists and matches its corresponding password
+      if (users[username] && users[username] === password) {
+        window.location.href = "https://markmogere.github.io/TrizaJuniorResourceCenter/";
+      } else {
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
